@@ -22,7 +22,7 @@ const Navbar = () => {
           }}
         >
           <FlightTakeoffIcon sx={{ fontSize: 40 }} />
-          Viagens Felizes
+          Agência Senior
         </Typography>
 
         <Box sx={{ display: 'flex', gap: 2 }}>

@@ -26,7 +26,7 @@ const Sobre = () => {
     <Container maxWidth={false} sx={{ px: { xs: 1, md: 8 }, py: 4, pt: { xs: 10, md: 12 }, display: 'flex', flexDirection: 'column', alignItems: 'center', maxWidth: '1400px', mx: 'auto' }}>
       <Box sx={{ width: '100%', maxWidth: 900, mx: 'auto' }}>
         <Typography variant="h2" component="h1" align="center" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '2rem', md: '2.7rem' } }}>
-          Sobre a Viagens Felizes
+          Sobre a Agência Senior
         </Typography>
         <Typography variant="h5" align="center" color="text.secondary" paragraph sx={{ fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
           Especialistas em viagens para a melhor idade
@@ -38,7 +38,7 @@ const Sobre = () => {
             Nossa História
           </Typography>
           <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem' }}>
-            A Viagens Felizes nasceu da paixão por proporcionar experiências únicas e memoráveis
+            A Agência Senior nasceu da paixão por proporcionar experiências únicas e memoráveis
             para pessoas da melhor idade. Com mais de 15 anos de experiência no mercado,
             nos especializamos em criar pacotes de viagem que atendem às necessidades
             específicas dos nossos clientes.
@@ -82,7 +82,7 @@ const Sobre = () => {
         {/* Diferenciais */}
         <Box component={Paper} sx={{ p: 4 }}>
           <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '1.5rem', md: '2.2rem' } }}>
-            Por que escolher a Viagens Felizes?
+            Por que escolher a Agência Senior?
           </Typography>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>

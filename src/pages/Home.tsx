@@ -111,7 +111,7 @@ const Home = () => {
 
       {/* Features Section */}
       <Typography variant="h2" component="h2" align="center" gutterBottom sx={{ mb: 6, fontWeight: 700, fontSize: { xs: '1.7rem', md: '2.5rem' } }}>
-        Por que escolher a Viagens Felizes?
+        Por que escolher a Agência Senior?
       </Typography>
       <Grid container spacing={4} sx={{ mb: 8, maxWidth: 1200, mx: 'auto' }} justifyContent="center" alignItems="stretch">
         {features.map((feature, index) => (
