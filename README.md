@@ -30,14 +30,9 @@ Este é um projeto frontend desenvolvido para uma agência de viagens especializ
 git clone [URL_DO_REPOSITÓRIO]
 ```
 
-2. Navegue até o diretório do projeto:
+2. Instale as dependências:
 ```bash
-cd agencia-viagens-idosos
-```
-
-3. Instale as dependências:
-```bash
-npm install
+yarn
 ```
 
 ## Executando o Projeto
@@ -45,7 +40,7 @@ npm install
 Para iniciar o servidor de desenvolvimento:
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 O projeto estará disponível em `http://localhost:5173`
