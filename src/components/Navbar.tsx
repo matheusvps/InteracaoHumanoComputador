@@ -6,12 +6,15 @@ import InfoIcon from '@mui/icons-material/Info';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import PeopleIcon from '@mui/icons-material/People';
 import MenuIcon from '@mui/icons-material/Menu';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { user, logout } = useAuth();
+
+  console.log('DEBUG user Navbar:', user);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -79,23 +82,32 @@ const Navbar = () => {
           ))}
         </Box>
         {/* User Info and Logout */}
-        <Box className="hidden md:flex items-center space-x-2" sx={{ flex: '0 0 auto' }}>
-          <Typography variant="body2" className="text-white">
-            Olá, {user?.name}
-          </Typography>
-          <Button
-            onClick={handleLogout}
-            color="inherit"
-            className="text-sm"
+        {user && (
+          <Box
             sx={{
-              '&:hover': {
-                background: 'rgba(255,255,255,0.1)',
-              },
+              flex: '0 0 auto',
+              display: { xs: 'none', md: 'flex' },
+              alignItems: 'center',
+              gap: 1,
             }}
           >
-            Sair
-          </Button>
-        </Box>
+            <Typography variant="body2" className="text-white">
+              Olá, {user.name}
+            </Typography>
+            <Button
+              onClick={handleLogout}
+              color="inherit"
+              className="text-sm"
+              sx={{
+                '&:hover': {
+                  background: 'rgba(255,255,255,0.1)',
+                },
+              }}
+            >
+              Sair
+            </Button>
+          </Box>
+        )}
         {/* Mobile Navigation: só aparece em telas pequenas */}
         <Box className="md:hidden flex items-center" sx={{ flex: '0 0 auto', display: { xs: 'flex', md: 'none' } }}>
           <IconButton edge="end" color="inherit" onClick={handleDrawerToggle}>
@@ -120,6 +132,30 @@ const Navbar = () => {
                   <ListItemText primary={link.label} />
                 </ListItem>
               ))}
+              {user && (
+                <>
+                  <ListItem sx={{ borderTop: 1, borderColor: 'divider', mt: 2 }}>
+                    <ListItemText 
+                      primary={`Olá, ${user.name}`} 
+                      secondary="Usuário logado"
+                      primaryTypographyProps={{ variant: 'subtitle2' }}
+                      secondaryTypographyProps={{ variant: 'caption' }}
+                    />
+                  </ListItem>
+                  <ListItem 
+                    onClick={() => {
+                      handleLogout();
+                      handleDrawerToggle();
+                    }}
+                    sx={{ cursor: 'pointer' }}
+                  >
+                    <ListItemIcon>
+                      <LogoutIcon className="text-2xl" />
+                    </ListItemIcon>
+                    <ListItemText primary="Sair" />
+                  </ListItem>
+                </>
+              )}
             </List>
           </Drawer>
         </Box>
