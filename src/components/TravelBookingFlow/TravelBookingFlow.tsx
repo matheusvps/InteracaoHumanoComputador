@@ -4,6 +4,7 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import { useNavigate } from 'react-router-dom';
+import ShareTravelDialog from './ShareTravelDialog';
 
 const cidadesRecomendadas = [
   'Curitiba',
@@ -35,6 +36,7 @@ const TravelBookingFlow: React.FC = () => {
   const [dataIda, setDataIda] = useState<Date | null>(null);
   const [dataVolta, setDataVolta] = useState<Date | null>(null);
   const [valor, setValor] = useState('');
+  const [showShareDialog, setShowShareDialog] = useState(false);
   const navigate = useNavigate();
 
   const avancar = () => setStep((s) => s + 1);
@@ -136,25 +138,51 @@ const TravelBookingFlow: React.FC = () => {
             <Typography className="text-lg mb-2"><b>Ida:</b> {formatarData(dataIda)}</Typography>
             <Typography className="text-lg mb-2"><b>Volta:</b> {formatarData(dataVolta)}</Typography>
             <Typography className="mt-4 text-xl font-semibold"><b>Valor total:</b> {valor}</Typography>
-            <Box className="flex flex-row justify-between mt-6">
-              <Button variant="outlined" onClick={voltar} className="py-3 text-lg">Voltar</Button>
-              <Button variant="contained" color="success" className="py-3 text-lg"
-                onClick={() => navigate('/pagamento', {
-                  state: {
-                    origem,
-                    destino,
-                    dataIda: formatarData(dataIda),
-                    dataVolta: formatarData(dataVolta),
-                    valor
-                  }
-                })}
+            <Box className="flex flex-col gap-3 mt-6">
+              <Box className="flex flex-row justify-between">
+                <Button variant="outlined" onClick={voltar} className="py-3 text-lg">Voltar</Button>
+                <Button variant="contained" color="success" className="py-3 text-lg"
+                  onClick={() => navigate('/pagamento', {
+                    state: {
+                      origem,
+                      destino,
+                      dataIda: formatarData(dataIda),
+                      dataVolta: formatarData(dataVolta),
+                      valor
+                    }
+                  })}
+                >
+                  Confirmar e Buscar
+                </Button>
+              </Box>
+              <Button 
+                variant="outlined" 
+                color="primary" 
+                className="py-3 text-lg"
+                onClick={() => setShowShareDialog(true)}
               >
-                Confirmar e Buscar
+                Compartilhar Viagem
               </Button>
             </Box>
           </Box>
         )}
       </Box>
+      
+      <ShareTravelDialog
+        open={showShareDialog}
+        onClose={() => setShowShareDialog(false)}
+        travelData={{
+          type: 'custom',
+          destination: destino,
+          startDate: dataIda ? dataIda.toISOString().split('T')[0] : '',
+          endDate: dataVolta ? dataVolta.toISOString().split('T')[0] : '',
+          description: `Viagem de ${origem} para ${destino}`,
+          customDetails: {
+            origem,
+            valor
+          }
+        }}
+      />
     </LocalizationProvider>
   );
 };

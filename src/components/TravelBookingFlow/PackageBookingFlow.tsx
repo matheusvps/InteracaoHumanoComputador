@@ -5,6 +5,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import { useNavigate } from 'react-router-dom';
 import Chip from '@mui/material/Chip';
+import ShareTravelDialog from './ShareTravelDialog';
 
 interface Pacote {
   destino: string;
@@ -33,6 +34,7 @@ const PackageBookingFlow: React.FC<PackageBookingFlowProps> = ({ pacote, open, o
   const [email, setEmail] = useState('');
   const [telefone, setTelefone] = useState('');
   const [quantidadePessoas, setQuantidadePessoas] = useState(1);
+  const [showShareDialog, setShowShareDialog] = useState(false);
   const navigate = useNavigate();
 
   const avancar = () => setStep((s) => s + 1);
@@ -189,31 +191,41 @@ const PackageBookingFlow: React.FC<PackageBookingFlowProps> = ({ pacote, open, o
                 <Typography className="mt-4 text-xl font-semibold text-green-700">
                   <b>Valor total:</b> {calcularValorTotal()}
                 </Typography>
-                <Box className="flex flex-row justify-between mt-6">
-                  <Button variant="outlined" onClick={voltar} className="py-3 text-lg">Voltar</Button>
+                <Box className="flex flex-col gap-3 mt-6">
+                  <Box className="flex flex-row justify-between">
+                    <Button variant="outlined" onClick={voltar} className="py-3 text-lg">Voltar</Button>
+                    <Button 
+                      variant="contained" 
+                      color="success" 
+                      className="py-3 text-lg"
+                      onClick={() => {
+                        navigate('/pagamento', {
+                          state: {
+                            origem: 'Cidade de origem',
+                            destino: pacote.destino,
+                            dataIda: formatarData(dataIda),
+                            dataVolta: formatarData(calcularDataVolta()),
+                            valor: calcularValorTotal(),
+                            nome: nomePassageiro,
+                            email: email,
+                            telefone: telefone,
+                            quantidadePessoas: quantidadePessoas,
+                            tipo: 'pacote'
+                          }
+                        });
+                        handleClose();
+                      }}
+                    >
+                      Confirmar e Pagar
+                    </Button>
+                  </Box>
                   <Button 
-                    variant="contained" 
-                    color="success" 
+                    variant="outlined" 
+                    color="primary" 
                     className="py-3 text-lg"
-                    onClick={() => {
-                      navigate('/pagamento', {
-                        state: {
-                          origem: 'Cidade de origem',
-                          destino: pacote.destino,
-                          dataIda: formatarData(dataIda),
-                          dataVolta: formatarData(calcularDataVolta()),
-                          valor: calcularValorTotal(),
-                          nome: nomePassageiro,
-                          email: email,
-                          telefone: telefone,
-                          quantidadePessoas: quantidadePessoas,
-                          tipo: 'pacote'
-                        }
-                      });
-                      handleClose();
-                    }}
+                    onClick={() => setShowShareDialog(true)}
                   >
-                    Confirmar e Pagar
+                    Compartilhar Viagem
                   </Button>
                 </Box>
               </Box>
@@ -221,6 +233,23 @@ const PackageBookingFlow: React.FC<PackageBookingFlowProps> = ({ pacote, open, o
           </Box>
         </DialogContent>
       </Dialog>
+      
+      <ShareTravelDialog
+        open={showShareDialog}
+        onClose={() => setShowShareDialog(false)}
+        travelData={{
+          type: 'package',
+          destination: pacote.destino,
+          startDate: dataIda ? dataIda.toISOString().split('T')[0] : '',
+          endDate: calcularDataVolta() ? calcularDataVolta().toISOString().split('T')[0] : '',
+          description: `Pacote para ${pacote.destino}`,
+          packageDetails: {
+            preco: pacote.preco,
+            duracao: pacote.duracao,
+            inclusos: pacote.inclusos
+          }
+        }}
+      />
     </LocalizationProvider>
   );
 };

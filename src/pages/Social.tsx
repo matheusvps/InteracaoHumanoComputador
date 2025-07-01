@@ -7,6 +7,8 @@ import TravelInvites from '../components/Social/TravelInvites';
 import AddFriend from '../components/Social/AddFriend';
 import UserProfile from '../components/Social/UserProfile';
 import AuthContainer from '../components/Social/AuthContainer';
+import JoinTravelByCode from '../components/Social/JoinTravelByCode';
+import SharedTravels from '../components/Social/SharedTravels';
 import { 
   Tabs, 
   Tab, 
@@ -19,13 +21,15 @@ import {
   Typography,
   Container,
   Paper,
-  Divider
+  Divider,
+  Button
 } from '@mui/material';
 import GroupIcon from '@mui/icons-material/Group';
 import MailIcon from '@mui/icons-material/Mail';
 import FlightIcon from '@mui/icons-material/Flight';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AddIcon from '@mui/icons-material/Add';
 
 type TabType = {
   id: string;
@@ -34,14 +38,29 @@ type TabType = {
   count?: number;
 };
 
+const TravelInvitesWithJoinButton: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <Box>
+      <Button
+        variant="outlined"
+        color="primary"
+        startIcon={<AddIcon />}
+        sx={{ mb: 2 }}
+        onClick={() => setOpen(true)}
+      >
+        Entrar em viagem por código
+      </Button>
+      <TravelInvites />
+      <JoinTravelByCode open={open} onClose={() => setOpen(false)} />
+    </Box>
+  );
+};
+
 const Social: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
-  const { user, logout, isAuthenticated } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const { friends, friendRequests, travelInvites } = useSocial();
-
-  const handleLogout = () => {
-    logout();
-  };
 
   // Se não estiver autenticado, mostrar o componente de autenticação
   if (!isAuthenticated) {
@@ -52,6 +71,7 @@ const Social: React.FC = () => {
     { id: 'friends', label: 'Amigos', icon: <GroupIcon />, count: friends.length },
     { id: 'requests', label: 'Convites', icon: <MailIcon />, count: friendRequests.filter(r => r.status === 'pending').length },
     { id: 'travels', label: 'Viagens', icon: <FlightIcon />, count: travelInvites.filter(t => t.status === 'pending').length },
+    { id: 'shared', label: 'Compartilhadas', icon: <FlightIcon /> },
     { id: 'add', label: 'Adicionar', icon: <PersonAddIcon /> },
     { id: 'profile', label: 'Perfil', icon: <AccountCircleIcon /> }
   ];
@@ -63,10 +83,12 @@ const Social: React.FC = () => {
       case 1:
         return <FriendRequests />;
       case 2:
-        return <TravelInvites />;
+        return <TravelInvitesWithJoinButton />;
       case 3:
-        return <AddFriend />;
+        return <SharedTravels />;
       case 4:
+        return <AddFriend />;
+      case 5:
         return <UserProfile />;
       default:
         return <FriendsList />;

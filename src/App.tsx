@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { AuthProvider } from './contexts/AuthContext';
 import { SocialProvider } from './contexts/SocialContext';
+import { TravelProvider } from './contexts/TravelContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/Navbar';
@@ -46,20 +47,22 @@ function App() {
   return (
     <AuthProvider>
       <SocialProvider>
-        <Router>
-          <AppContent />
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-        </Router>
+        <TravelProvider>
+          <Router>
+            <AppContent />
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+            />
+          </Router>
+        </TravelProvider>
       </SocialProvider>
     </AuthProvider>
   );
