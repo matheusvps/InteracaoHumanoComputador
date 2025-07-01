@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Box,
-  Paper,
   Typography,
   TextField,
   Button,
@@ -12,8 +11,7 @@ import {
   Alert,
   CircularProgress,
   Divider,
-  Chip,
-  Container
+  Chip
 } from '@mui/material';
 import {
   Visibility,
@@ -126,79 +124,77 @@ const AuthContainer: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ py: 4 }}>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        minWidth: '100vw',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      }}
+    >
       <Box
         sx={{
-          minHeight: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          py: 4
+          width: '100%',
+          maxWidth: 450,
+          borderRadius: 3,
+          overflow: 'hidden',
+          background: 'transparent',
+          boxShadow: 8,
         }}
       >
-        <Paper
-          elevation={24}
+        {/* Header */}
+        <Box
           sx={{
-            width: '100%',
-            maxWidth: 450,
-            borderRadius: 3,
-            overflow: 'hidden',
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)'
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            color: 'white',
+            textAlign: 'center',
+            py: 4,
+            px: 3
           }}
         >
-          {/* Header */}
-          <Box
+          <Typography variant="h4" component="h1" fontWeight="bold" gutterBottom>
+            Bem-vindo
+          </Typography>
+          <Typography variant="body1" sx={{ opacity: 0.9 }}>
+            Conecte-se com amigos e planeje suas viagens
+          </Typography>
+        </Box>
+
+        {/* Tabs */}
+        <Box sx={{ borderBottom: 1, borderColor: 'divider', background: 'white' }}>
+          <Tabs
+            value={tabValue}
+            onChange={handleTabChange}
+            variant="fullWidth"
             sx={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              color: 'white',
-              textAlign: 'center',
-              py: 4,
-              px: 3
+              '& .MuiTab-root': {
+                fontWeight: 600,
+                fontSize: '1rem',
+                py: 2
+              }
             }}
           >
-            <Typography variant="h4" component="h1" fontWeight="bold" gutterBottom>
-              Bem-vindo
-            </Typography>
-            <Typography variant="body1" sx={{ opacity: 0.9 }}>
-              Conecte-se com amigos e planeje suas viagens
-            </Typography>
-          </Box>
+            <Tab
+              icon={<LoginIcon />}
+              label="Entrar"
+              iconPosition="start"
+              sx={{ minHeight: 64 }}
+            />
+            <Tab
+              icon={<RegisterIcon />}
+              label="Cadastrar"
+              iconPosition="start"
+              sx={{ minHeight: 64 }}
+            />
+          </Tabs>
+        </Box>
 
-          {/* Tabs */}
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <Tabs
-              value={tabValue}
-              onChange={handleTabChange}
-              variant="fullWidth"
-              sx={{
-                '& .MuiTab-root': {
-                  fontWeight: 600,
-                  fontSize: '1rem',
-                  py: 2
-                }
-              }}
-            >
-              <Tab
-                icon={<LoginIcon />}
-                label="Entrar"
-                iconPosition="start"
-                sx={{ minHeight: 64 }}
-              />
-              <Tab
-                icon={<RegisterIcon />}
-                label="Cadastrar"
-                iconPosition="start"
-                sx={{ minHeight: 64 }}
-              />
-            </Tabs>
-          </Box>
-
-          {/* Login Tab */}
+        {/* Login Tab */}
+        <Box sx={{ background: 'white' }}>
           <TabPanel value={tabValue} index={0}>
-            <Box component="form" onSubmit={handleLogin} sx={{ px: 3, pb: 3 }}>
+            <Box component="form" onSubmit={handleLogin} sx={{ px: 3, pb: 3, background: 'white' }}>
               <TextField
                 fullWidth
                 label="Email"
@@ -290,7 +286,7 @@ const AuthContainer: React.FC = () => {
 
           {/* Register Tab */}
           <TabPanel value={tabValue} index={1}>
-            <Box component="form" onSubmit={handleRegister} sx={{ px: 3, pb: 3 }}>
+            <Box component="form" onSubmit={handleRegister} sx={{ px: 3, pb: 3, background: 'white' }}>
               <TextField
                 fullWidth
                 label="Nome completo"
@@ -403,9 +399,9 @@ const AuthContainer: React.FC = () => {
               </Button>
             </Box>
           </TabPanel>
-        </Paper>
+        </Box>
       </Box>
-    </Container>
+    </Box>
   );
 };
 
