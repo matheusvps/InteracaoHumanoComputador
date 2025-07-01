@@ -4,19 +4,27 @@ import HomeIcon from '@mui/icons-material/Home';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import InfoIcon from '@mui/icons-material/Info';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+import PeopleIcon from '@mui/icons-material/People';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const handleLogout = () => {
+    logout();
+  };
+
   const navLinks = [
     { to: '/', label: 'Início', icon: <HomeIcon className="text-2xl" /> },
     { to: '/pacotes', label: 'Pacotes', icon: <FlightTakeoffIcon className="text-2xl" /> },
+    { to: '/social', label: 'Social', icon: <PeopleIcon className="text-2xl" /> },
     { to: '/sobre', label: 'Sobre', icon: <InfoIcon className="text-2xl" /> },
     { to: '/contato', label: 'Contato', icon: <ContactSupportIcon className="text-2xl" /> },
   ];
@@ -69,6 +77,24 @@ const Navbar = () => {
               {link.label}
             </Button>
           ))}
+        </Box>
+        {/* User Info and Logout */}
+        <Box className="hidden md:flex items-center space-x-2" sx={{ flex: '0 0 auto' }}>
+          <Typography variant="body2" className="text-white">
+            Olá, {user?.name}
+          </Typography>
+          <Button
+            onClick={handleLogout}
+            color="inherit"
+            className="text-sm"
+            sx={{
+              '&:hover': {
+                background: 'rgba(255,255,255,0.1)',
+              },
+            }}
+          >
+            Sair
+          </Button>
         </Box>
         {/* Mobile Navigation: só aparece em telas pequenas */}
         <Box className="md:hidden flex items-center" sx={{ flex: '0 0 auto', display: { xs: 'flex', md: 'none' } }}>
