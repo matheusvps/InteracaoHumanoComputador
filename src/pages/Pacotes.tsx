@@ -4,10 +4,13 @@ import HotelIcon from '@mui/icons-material/Hotel';
 import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import { useState } from 'react';
+import PackageBookingFlow from '../components/TravelBookingFlow/PackageBookingFlow';
 
 const Pacotes = () => {
   const [open, setOpen] = useState(false);
   const [nomeGrupo, setNomeGrupo] = useState('');
+  const [openReserva, setOpenReserva] = useState(false);
+  const [pacoteSelecionado, setPacoteSelecionado] = useState<typeof pacotes[0] | null>(null);
 
   const pacotes = [
     {
@@ -100,6 +103,16 @@ const Pacotes = () => {
     alert('Grupo criado com sucesso! (Funcionalidade fictícia)');
   };
 
+  const handleReservarPacote = (pacote: typeof pacotes[0]) => {
+    setPacoteSelecionado(pacote);
+    setOpenReserva(true);
+  };
+
+  const handleCloseReserva = () => {
+    setOpenReserva(false);
+    setPacoteSelecionado(null);
+  };
+
   return (
     <div className="centralizado">
       <Container maxWidth="xl" sx={{ px: { xs: 1, md: 8 }, py: 0, pt: { xs: 10, md: 12 } }}>
@@ -181,6 +194,7 @@ const Pacotes = () => {
                     color="primary"
                     fullWidth
                     size="large"
+                    onClick={() => handleReservarPacote(pacote)}
                     sx={{ mt: 2, fontSize: '1.2rem', py: 1.5 }}
                   >
                     Reservar Agora
@@ -224,6 +238,15 @@ const Pacotes = () => {
             </Grid>
           </Grid>
         </Box>
+        
+        {/* Modal de Reserva de Pacote */}
+        {pacoteSelecionado && (
+          <PackageBookingFlow
+            pacote={pacoteSelecionado}
+            open={openReserva}
+            onClose={handleCloseReserva}
+          />
+        )}
       </Container>
     </div>
   );
