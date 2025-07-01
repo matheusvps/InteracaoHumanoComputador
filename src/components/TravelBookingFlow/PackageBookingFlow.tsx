@@ -4,6 +4,7 @@ import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import { useNavigate } from 'react-router-dom';
+import Chip from '@mui/material/Chip';
 
 interface Pacote {
   destino: string;
@@ -67,22 +68,22 @@ const PackageBookingFlow: React.FC<PackageBookingFlowProps> = ({ pacote, open, o
           Reservar Pacote: {pacote.destino}
         </DialogTitle>
         <DialogContent>
-          <Box className="w-full max-w-md mx-auto p-4">
+          <Box className="w-full max-w-md mx-auto p-4" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             {step === 0 && (
-              <Box>
+              <Box sx={{ textAlign: 'center' }}>
                 <Typography variant="h6" className="mb-4 font-bold text-lg">Informações do Pacote</Typography>
                 <Box className="mb-6 p-4 bg-gray-50 rounded-lg">
                   <Typography className="text-lg mb-2"><b>Destino:</b> {pacote.destino}</Typography>
                   <Typography className="text-lg mb-2"><b>Preço:</b> {pacote.preco}</Typography>
                   <Typography className="text-lg mb-2"><b>Duração:</b> {pacote.duracao}</Typography>
                   <Typography className="text-lg mb-2"><b>Incluso:</b></Typography>
-                  <Box className="ml-4">
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center', mt: 1 }}>
                     {pacote.inclusos.map((item, index) => (
-                      <Typography key={index} className="text-base">• {item}</Typography>
+                      <Chip key={index} label={item} color="primary" variant="outlined" />
                     ))}
                   </Box>
                 </Box>
-                <Box className="flex flex-row justify-between">
+                <Box className="flex flex-row justify-between pt-4">
                   <span />
                   <Button variant="contained" onClick={avancar} className="py-3 text-lg">Próximo</Button>
                 </Box>
@@ -135,15 +136,15 @@ const PackageBookingFlow: React.FC<PackageBookingFlowProps> = ({ pacote, open, o
             )}
 
             {step === 3 && (
-              <Box>
-                <Typography variant="h6" className="mb-4 font-bold text-lg">Dados do passageiro principal</Typography>
+              <Box sx={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                <Typography variant="h6" className="mb-4 font-bold text-lg" sx={{ textAlign: 'center' }}>Dados do passageiro principal</Typography>
                 <TextField
                   label="Nome completo"
                   value={nomePassageiro}
                   onChange={(e) => setNomePassageiro(e.target.value)}
                   fullWidth
                   autoFocus
-                  className="mb-4"
+                  sx={{ mb: 2 }}
                 />
                 <TextField
                   label="E-mail"
@@ -151,16 +152,16 @@ const PackageBookingFlow: React.FC<PackageBookingFlowProps> = ({ pacote, open, o
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   fullWidth
-                  className="mb-4"
+                  sx={{ mb: 2 }}
                 />
                 <TextField
                   label="Telefone"
                   value={telefone}
                   onChange={(e) => setTelefone(e.target.value)}
                   fullWidth
-                  className="mb-4"
+                  sx={{ mb: 2 }}
                 />
-                <Box className="flex flex-row justify-between mt-6">
+                <Box className="flex flex-row justify-between mt-6" sx={{ width: '100%' }}>
                   <Button variant="outlined" onClick={voltar} className="py-3 text-lg">Voltar</Button>
                   <Button 
                     variant="contained" 
