@@ -144,7 +144,7 @@ const Pacotes = () => {
         <Grid container spacing={4} sx={{ mt: 2 }} justifyContent="center">
           {pacotes.map((pacote, index) => (
             <Grid item xs={12} md={4} key={index}>
-              <Card sx={{ height: 480, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <CardMedia
                   component="img"
                   height="200"
