@@ -13,6 +13,9 @@ const cidadesRecomendadas = [
   'Salvador',
   'São Paulo',
   'Florianópolis',
+  'Maceió',
+  'Foz do Iguaçu',
+  'Fernando de Noronha',
 ];
 
 const gerarValorFicticio = () => {
@@ -57,12 +60,15 @@ const TravelBookingFlow: React.FC = () => {
               )}
               className="mb-4"
             />
-            <Box className="flex flex-wrap gap-2 mb-4">
+            <Box className="flex flex-wrap mb-8" style={{ gap: 16 }}>
               {cidadesRecomendadas.map((cidade) => (
                 <Button key={cidade} variant="outlined" onClick={() => setOrigem(cidade)}>{cidade}</Button>
               ))}
             </Box>
-            <Button variant="contained" fullWidth disabled={!origem} onClick={avancar} className="py-3 text-lg">Próximo</Button>
+            <Box className="flex flex-row justify-between">
+              <span />
+              <Button variant="contained" disabled={!origem} onClick={avancar} className="py-3 text-lg">Próximo</Button>
+            </Box>
           </Box>
         )}
         {step === 1 && (
@@ -77,13 +83,15 @@ const TravelBookingFlow: React.FC = () => {
               )}
               className="mb-4"
             />
-            <Box className="flex flex-wrap gap-2 mb-4">
+            <Box className="flex flex-wrap mb-8" style={{ gap: 16 }}>
               {cidadesRecomendadas.filter(c => c !== origem).map((cidade) => (
                 <Button key={cidade} variant="outlined" onClick={() => setDestino(cidade)}>{cidade}</Button>
               ))}
             </Box>
-            <Button variant="outlined" onClick={voltar} className="mr-4 py-3 text-lg">Voltar</Button>
-            <Button variant="contained" disabled={!destino} onClick={avancar} className="py-3 text-lg">Próximo</Button>
+            <Box className="flex flex-row justify-between">
+              <Button variant="outlined" onClick={voltar} className="py-3 text-lg">Voltar</Button>
+              <Button variant="contained" disabled={!destino} onClick={avancar} className="py-3 text-lg">Próximo</Button>
+            </Box>
           </Box>
         )}
         {step === 2 && (
@@ -96,8 +104,10 @@ const TravelBookingFlow: React.FC = () => {
               slotProps={{ textField: { fullWidth: true, autoFocus: true } }}
               disablePast
             />
-            <Button variant="outlined" onClick={voltar} className="mr-4 mt-6 py-3 text-lg">Voltar</Button>
-            <Button variant="contained" disabled={!dataIda} onClick={avancar} className="mt-6 py-3 text-lg">Próximo</Button>
+            <Box className="flex flex-row justify-between mt-6">
+              <Button variant="outlined" onClick={voltar} className="py-3 text-lg">Voltar</Button>
+              <Button variant="contained" disabled={!dataIda} onClick={avancar} className="py-3 text-lg">Próximo</Button>
+            </Box>
           </Box>
         )}
         {step === 3 && (
@@ -111,8 +121,10 @@ const TravelBookingFlow: React.FC = () => {
               minDate={dataIda || undefined}
               disablePast
             />
-            <Button variant="outlined" onClick={voltar} className="mr-4 mt-6 py-3 text-lg">Voltar</Button>
-            <Button variant="contained" onClick={avancar} className="mt-6 py-3 text-lg">Próximo</Button>
+            <Box className="flex flex-row justify-between mt-6">
+              <Button variant="outlined" onClick={voltar} className="py-3 text-lg">Voltar</Button>
+              <Button variant="contained" onClick={avancar} className="py-3 text-lg">Próximo</Button>
+            </Box>
           </Box>
         )}
         {step === 4 && (
@@ -124,20 +136,22 @@ const TravelBookingFlow: React.FC = () => {
             <Typography className="text-lg mb-2"><b>Ida:</b> {formatarData(dataIda)}</Typography>
             <Typography className="text-lg mb-2"><b>Volta:</b> {formatarData(dataVolta)}</Typography>
             <Typography className="mt-4 text-xl font-semibold"><b>Valor total:</b> {valor}</Typography>
-            <Button variant="outlined" onClick={voltar} className="mt-6 mr-4 py-3 text-lg">Voltar</Button>
-            <Button variant="contained" color="success" className="mt-6 py-3 text-lg"
-              onClick={() => navigate('/pagamento', {
-                state: {
-                  origem,
-                  destino,
-                  dataIda: formatarData(dataIda),
-                  dataVolta: formatarData(dataVolta),
-                  valor
-                }
-              })}
-            >
-              Confirmar e Buscar
-            </Button>
+            <Box className="flex flex-row justify-between mt-6">
+              <Button variant="outlined" onClick={voltar} className="py-3 text-lg">Voltar</Button>
+              <Button variant="contained" color="success" className="py-3 text-lg"
+                onClick={() => navigate('/pagamento', {
+                  state: {
+                    origem,
+                    destino,
+                    dataIda: formatarData(dataIda),
+                    dataVolta: formatarData(dataVolta),
+                    valor
+                  }
+                })}
+              >
+                Confirmar e Buscar
+              </Button>
+            </Box>
           </Box>
         )}
       </Box>
