@@ -183,7 +183,7 @@ const PackageBookingFlow: React.FC<PackageBookingFlowProps> = ({ pacote, open, o
                 <Divider className="mb-4" />
                 <Typography className="text-lg mb-2"><b>Destino:</b> {pacote.destino}</Typography>
                 <Typography className="text-lg mb-2"><b>Data de partida:</b> {formatarData(dataIda)}</Typography>
-                <Typography className="text-lg mb-2"><b>Data de retorno:</b> {formatarData(calcularDataVolta())}</Typography>
+                <Typography className="text-lg mb-2"><b>Data de retorno:</b> {dataIda && calcularDataVolta() ? formatarData(calcularDataVolta()!) : 'Será calculada automaticamente'}</Typography>
                 <Typography className="text-lg mb-2"><b>Quantidade de pessoas:</b> {quantidadePessoas}</Typography>
                 <Typography className="text-lg mb-2"><b>Passageiro principal:</b> {nomePassageiro}</Typography>
                 <Typography className="text-lg mb-2"><b>E-mail:</b> {email}</Typography>
@@ -241,7 +241,7 @@ const PackageBookingFlow: React.FC<PackageBookingFlowProps> = ({ pacote, open, o
           type: 'package',
           destination: pacote.destino,
           startDate: dataIda ? dataIda.toISOString().split('T')[0] : '',
-          endDate: calcularDataVolta() ? calcularDataVolta().toISOString().split('T')[0] : '',
+          endDate: calcularDataVolta() ? calcularDataVolta()!.toISOString().split('T')[0] : '',
           description: `Pacote para ${pacote.destino}`,
           packageDetails: {
             preco: pacote.preco,

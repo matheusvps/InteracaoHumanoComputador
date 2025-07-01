@@ -6,6 +6,14 @@ import { ptBR } from 'date-fns/locale/pt-BR';
 import { useNavigate } from 'react-router-dom';
 import ShareTravelDialog from './ShareTravelDialog';
 
+export interface TravelData {
+  origem?: string;
+  destino?: string;
+  dataIda?: string;
+  dataVolta?: string;
+  transporte?: string;
+}
+
 const cidadesRecomendadas = [
   'Curitiba',
   'Aparecida',

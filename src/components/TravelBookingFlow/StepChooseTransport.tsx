@@ -14,7 +14,7 @@ const StepChooseTransport: React.FC<Props> = ({ travelData, setTravelData, nextS
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setTravelData((prev) => ({ ...prev, transporte }));
+    setTravelData((prev: TravelData) => ({ ...prev, transporte }));
     nextStep();
   };
 

@@ -1,4 +1,4 @@
-import { Container, Typography, Grid, Box, Paper, Divider, Button, Card, CardContent, Avatar } from '@mui/material';
+import { Container, Typography, Box, Paper, Divider, Button, Card, CardContent, Avatar } from '@mui/material';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import GroupsIcon from '@mui/icons-material/Groups';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -58,20 +58,16 @@ const Sobre = () => {
           </Typography>
 
           {/* Missão e Visão */}
-          <Grid container spacing={4} sx={{ mb: 4 }}>
-            <Grid item xs={12} md={6}>
-              <Paper elevation={2} sx={{ p: 3, height: '100%' }}>
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>Missão</Typography>
-                <Typography variant="body1">Proporcionar experiências de viagem seguras, confortáveis e inesquecíveis para pessoas da melhor idade.</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Paper elevation={2} sx={{ p: 3, height: '100%' }}>
-                <Typography variant="h6" sx={{ fontWeight: 700 }}>Visão</Typography>
-                <Typography variant="body1">Ser referência nacional em turismo sênior, reconhecida pela excelência e cuidado com nossos clientes.</Typography>
-              </Paper>
-            </Grid>
-          </Grid>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4, mb: 4 }}>
+            <Paper elevation={2} sx={{ p: 3, height: '100%' }}>
+              <Typography variant="h6" sx={{ fontWeight: 700 }}>Missão</Typography>
+              <Typography variant="body1">Proporcionar experiências de viagem seguras, confortáveis e inesquecíveis para pessoas da melhor idade.</Typography>
+            </Paper>
+            <Paper elevation={2} sx={{ p: 3, height: '100%' }}>
+              <Typography variant="h6" sx={{ fontWeight: 700 }}>Visão</Typography>
+              <Typography variant="body1">Ser referência nacional em turismo sênior, reconhecida pela excelência e cuidado com nossos clientes.</Typography>
+            </Paper>
+          </Box>
 
           <Divider sx={{ my: 4 }} />
 
@@ -113,9 +109,9 @@ const Sobre = () => {
           <Typography variant="h3" align="center" gutterBottom sx={{ mb: 4, fontWeight: 700, fontSize: { xs: '1.5rem', md: '2.2rem' } }}>
             Nossos Valores
           </Typography>
-          <Grid container spacing={4} sx={{ mb: 6, justifyContent: 'center' }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 4, mb: 6, justifyContent: 'center' }}>
             {valores.map((valor, index) => (
-              <Grid item xs={12} md={4} key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Box key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Card elevation={4} sx={{ transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.04)' }, height: '100%', minWidth: 260, maxWidth: 320 }}>
                   <CardContent sx={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     {valor.icon}
@@ -127,9 +123,9 @@ const Sobre = () => {
                     </Typography>
                   </CardContent>
                 </Card>
-              </Grid>
+              </Box>
             ))}
-          </Grid>
+          </Box>
 
           <Divider sx={{ my: 4 }} />
 
@@ -138,85 +134,75 @@ const Sobre = () => {
             <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '1.5rem', md: '2.2rem' } }}>
               Por que escolher a Agência Senior?
             </Typography>
-            <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
-                <Box sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
-                  <SupportAgentIcon color="success" sx={{ mr: 1 }} />
-                  <Box>
-                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.3rem' } }}>
-                      Equipe Especializada
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
-                      Profissionais treinados para atender às necessidades específicas de cada cliente.
-                    </Typography>
-                  </Box>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 3 }}>
+              <Box sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
+                <SupportAgentIcon color="success" sx={{ mr: 1 }} />
+                <Box>
+                  <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.3rem' } }}>
+                    Equipe Especializada
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
+                    Profissionais treinados para atender às necessidades específicas de cada cliente.
+                  </Typography>
                 </Box>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Box sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
-                  <GroupsIcon color="success" sx={{ mr: 1 }} />
-                  <Box>
-                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.3rem' } }}>
-                      Pacotes Personalizados
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
-                      Viagens adaptadas às preferências e necessidades de cada grupo.
-                    </Typography>
-                  </Box>
+              </Box>
+              <Box sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
+                <GroupsIcon color="success" sx={{ mr: 1 }} />
+                <Box>
+                  <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.3rem' } }}>
+                    Pacotes Personalizados
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
+                    Viagens adaptadas às preferências e necessidades de cada grupo.
+                  </Typography>
                 </Box>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Box sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
-                  <SupportAgentIcon color="success" sx={{ mr: 1 }} />
-                  <Box>
-                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.3rem' } }}>
-                      Suporte 24h
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
-                      Assistência completa durante toda a viagem, 24 horas por dia.
-                    </Typography>
-                  </Box>
+              </Box>
+              <Box sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
+                <SupportAgentIcon color="success" sx={{ mr: 1 }} />
+                <Box>
+                  <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.3rem' } }}>
+                    Suporte 24h
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
+                    Assistência completa durante toda a viagem, 24 horas por dia.
+                  </Typography>
                 </Box>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Box sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
-                  <SecurityIcon color="success" sx={{ mr: 1 }} />
-                  <Box>
-                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.3rem' } }}>
-                      Segurança Garantida
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
-                      Parcerias com as melhores empresas do setor para garantir sua tranquilidade.
-                    </Typography>
-                  </Box>
+              </Box>
+              <Box sx={{ mb: 3, display: 'flex', alignItems: 'center' }}>
+                <SecurityIcon color="success" sx={{ mr: 1 }} />
+                <Box>
+                  <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.3rem' } }}>
+                    Segurança Garantida
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
+                    Parcerias com as melhores empresas do setor para garantir sua tranquilidade.
+                  </Typography>
                 </Box>
-              </Grid>
-            </Grid>
+              </Box>
+            </Box>
           </Box>
 
           {/* Depoimentos */}
           <Typography variant="h4" align="center" gutterBottom sx={{ fontWeight: 700, mb: 2 }}>
             Depoimentos de Clientes
           </Typography>
-          <Grid container spacing={4} sx={{ mb: 6 }}>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4, mb: 6 }}>
             {depoimentos.map((dep, idx) => (
-              <Grid item xs={12} md={6} key={idx}>
-                <Card elevation={2} sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <Avatar sx={{ bgcolor: 'success.main', width: 56, height: 56, mr: 2 }}>
-                    <PersonIcon />
-                  </Avatar>
-                  <Box>
-                    <Typography variant="body1" sx={{ fontStyle: 'italic' }}>
-                      "{dep.texto}"
-                    </Typography>
-                    <Typography variant="subtitle2" sx={{ fontWeight: 600, mt: 1 }}>
-                      {dep.nome}
-                    </Typography>
-                  </Box>
-                </Card>
-              </Grid>
+              <Card key={idx} elevation={2} sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Avatar sx={{ bgcolor: 'success.main', width: 56, height: 56, mr: 2 }}>
+                  <PersonIcon />
+                </Avatar>
+                <Box>
+                  <Typography variant="body1" sx={{ fontStyle: 'italic' }}>
+                    "{dep.texto}"
+                  </Typography>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, mt: 1 }}>
+                    {dep.nome}
+                  </Typography>
+                </Box>
+              </Card>
             ))}
-          </Grid>
+          </Box>
 
           {/* Botões de ação */}
           <Box sx={{ display: 'flex', justifyContent: 'center', gap: 3, mb: 4 }}>

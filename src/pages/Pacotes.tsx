@@ -1,4 +1,4 @@
-import { Container, Typography, Card, CardContent, CardMedia, Button, Box, Chip, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Grid } from '@mui/material';
+import { Container, Typography, Card, CardContent, CardMedia, Button, Box, Chip, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
 import AccessibleIcon from '@mui/icons-material/Accessible';
 import HotelIcon from '@mui/icons-material/Hotel';
 import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
@@ -154,9 +154,9 @@ const Pacotes = () => {
         <Typography variant="h5" align="center" color="text.secondary" paragraph sx={{ fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
           Escolha seu destino preferido e embarque em uma viagem inesquecível
         </Typography>
-        <Grid container spacing={4} sx={{ mt: 2 }} justifyContent="center">
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 4, mt: 2 }}>
           {pacotes.map((pacote, index) => (
-            <Grid item xs={12} md={4} key={index}>
+            <Box key={index}>
               <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <CardMedia
                   component="img"
@@ -201,42 +201,36 @@ const Pacotes = () => {
                   </Button>
                 </CardContent>
               </Card>
-            </Grid>
+            </Box>
           ))}
-        </Grid>
+        </Box>
         <Box sx={{ mt: 6, textAlign: 'center' }}>
           <Typography variant="h3" gutterBottom sx={{ fontWeight: 700, fontSize: { xs: '1.5rem', md: '2.2rem' } }}>
             O que está incluído em todos os pacotes?
           </Typography>
-          <Grid container spacing={3} sx={{ mt: 2 }}>
-            <Grid item xs={12} md={4}>
-              <Box sx={{ textAlign: 'center', p: 2 }}>
-                <AccessibleIcon sx={{ fontSize: 70, color: 'primary.main', mb: 2 }} />
-                <Typography variant="h5" sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.5rem' } }}>Acessibilidade</Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
-                  Suporte especializado e adaptações conforme necessidade
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Box sx={{ textAlign: 'center', p: 2 }}>
-                <HotelIcon sx={{ fontSize: 70, color: 'primary.main', mb: 2 }} />
-                <Typography variant="h5" sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.5rem' } }}>Hospedagem</Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
-                  Hotéis selecionados com acessibilidade
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <Box sx={{ textAlign: 'center', p: 2 }}>
-                <DirectionsBusIcon sx={{ fontSize: 70, color: 'primary.main', mb: 2 }} />
-                <Typography variant="h5" sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.5rem' } }}>Transporte</Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
-                  Veículos adaptados e motoristas treinados
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 3, mt: 2 }}>
+            <Box sx={{ textAlign: 'center', p: 2 }}>
+              <AccessibleIcon sx={{ fontSize: 70, color: 'primary.main', mb: 2 }} />
+              <Typography variant="h5" sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.5rem' } }}>Acessibilidade</Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
+                Suporte especializado e adaptações conforme necessidade
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: 'center', p: 2 }}>
+              <HotelIcon sx={{ fontSize: 70, color: 'primary.main', mb: 2 }} />
+              <Typography variant="h5" sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.5rem' } }}>Hospedagem</Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
+                Hotéis selecionados com acessibilidade
+              </Typography>
+            </Box>
+            <Box sx={{ textAlign: 'center', p: 2 }}>
+              <DirectionsBusIcon sx={{ fontSize: 70, color: 'primary.main', mb: 2 }} />
+              <Typography variant="h5" sx={{ fontWeight: 600, fontSize: { xs: '1.1rem', md: '1.5rem' } }}>Transporte</Typography>
+              <Typography variant="body1" color="text.secondary" sx={{ fontSize: '1.1rem' }}>
+                Veículos adaptados e motoristas treinados
+              </Typography>
+            </Box>
+          </Box>
         </Box>
         
         {/* Modal de Reserva de Pacote */}

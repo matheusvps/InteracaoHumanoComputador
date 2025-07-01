@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Box, Typography, Button, Divider, Paper, Grid, TextField } from '@mui/material';
+import { Box, Typography, Button, Divider, Paper, TextField } from '@mui/material';
 import { useState } from 'react';
 
 const formasPagamento = [
@@ -90,9 +90,9 @@ const Pagamento = () => {
           </Box>
           <Divider className="my-6" />
           <Typography variant="h6" className="mb-6 text-lg text-center">Escolha a forma de pagamento:</Typography>
-          <Grid container spacing={4} justifyContent="center" alignItems="center" className="mb-6">
+          <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(3, 1fr)' }, gap: 4, mb: 6 }}>
             {formasPagamento.map((forma) => (
-              <Grid item xs={12} sm={4} key={forma.key} className="flex flex-col items-center">
+              <Box key={forma.key} className="flex flex-col items-center">
                 <Box
                   className={`cursor-pointer flex flex-col items-center border-2 rounded-lg p-2 transition ${formaSelecionada === forma.key ? 'border-green-600 bg-green-50' : 'border-transparent'}`}
                   onClick={() => setFormaSelecionada(forma.key)}
@@ -104,9 +104,9 @@ const Pagamento = () => {
                   </Box>
                   <span className="text-base font-semibold text-center">{forma.nome}</span>
                 </Box>
-              </Grid>
+              </Box>
             ))}
-          </Grid>
+          </Box>
           {formaSelecionada === 'cartao' && <FormCartao onPagar={handlePagamento} />}
           {formaSelecionada === 'pix' && <FormPix onPagar={handlePagamento} />}
           {formaSelecionada === 'boleto' && <FormBoleto onPagar={handlePagamento} />}
