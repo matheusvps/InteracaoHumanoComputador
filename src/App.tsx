@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Box } from '@mui/material';
+import { Box, ThemeProvider, CssBaseline } from '@mui/material';
 import { AuthProvider } from './contexts/AuthContext';
 import { SocialProvider } from './contexts/SocialContext';
 import { TravelProvider } from './contexts/TravelContext';
@@ -13,6 +13,7 @@ import Sobre from './pages/Sobre';
 import Pagamento from './pages/Pagamento';
 import Social from './pages/Social';
 import { useAuth } from './contexts/AuthContext';
+import { seniorTheme } from './styles/theme';
 
 function AppContent() {
   const { isAuthenticated } = useAuth();
@@ -28,7 +29,14 @@ function AppContent() {
   return (
     <>
       <Navbar />
-      <Box className="flex justify-center items-center min-h-screen">
+      <Box 
+        className="flex justify-center items-center min-h-screen"
+        sx={{ 
+          pt: { xs: 8, md: 10 }, // Espaçamento para a navbar fixa
+          backgroundColor: 'background.default',
+          minHeight: '100vh'
+        }}
+      >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/pacotes" element={<Pacotes />} />
@@ -45,26 +53,34 @@ function AppContent() {
 
 function App() {
   return (
-    <AuthProvider>
-      <SocialProvider>
-        <TravelProvider>
-          <Router>
-            <AppContent />
-            <ToastContainer
-              position="top-right"
-              autoClose={3000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-            />
-          </Router>
-        </TravelProvider>
-      </SocialProvider>
-    </AuthProvider>
+    <ThemeProvider theme={seniorTheme}>
+      <CssBaseline />
+      <AuthProvider>
+        <SocialProvider>
+          <TravelProvider>
+            <Router>
+              <AppContent />
+              <ToastContainer
+                position="top-right"
+                autoClose={5000} // Tempo maior para idosos lerem
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                toastStyle={{
+                  fontSize: '1.125rem', // Texto maior nas notificações
+                  minHeight: '64px',
+                  borderRadius: '12px',
+                }}
+              />
+            </Router>
+          </TravelProvider>
+        </SocialProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Removido o reset customizado que sobrescrevia o Tailwind */
+/* Estilos globais otimizados para pessoas idosas */
 
 html, body, #root {
   height: 100%;
@@ -11,4 +11,277 @@ html, body, #root {
   margin: 0;
   padding: 0;
   background: transparent;
+}
+
+/* Melhorias de acessibilidade para idosos */
+* {
+  /* Melhor contraste e legibilidade */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Foco visível para navegação por teclado */
+*:focus {
+  outline: 3px solid #FF6B35 !important;
+  outline-offset: 2px !important;
+  border-radius: 4px;
+}
+
+/* Melhorar espaçamento de texto */
+p, div, span {
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+/* Botões e links mais acessíveis */
+button, a, [role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Melhorar contraste de texto */
+.text-primary {
+  color: #212121 !important;
+}
+
+.text-secondary {
+  color: #424242 !important;
+}
+
+/* Áreas de clique maiores */
+.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Melhorar legibilidade de formulários */
+input, textarea, select {
+  font-size: 1.125rem !important;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+}
+
+/* Melhorar contraste de fundo */
+.bg-light {
+  background-color: #F5F5F5 !important;
+}
+
+.bg-white {
+  background-color: #FFFFFF !important;
+}
+
+/* Melhorar espaçamento geral */
+.container {
+  padding: 24px;
+}
+
+/* Melhorar tamanho de ícones */
+.icon-large {
+  font-size: 2rem !important;
+  width: 2rem !important;
+  height: 2rem !important;
+}
+
+.icon-medium {
+  font-size: 1.5rem !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+}
+
+/* Melhorar cards e containers */
+.card-senior {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 24px;
+  margin: 16px 0;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.card-senior:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+}
+
+/* Melhorar botões */
+.btn-senior {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 16px 32px;
+  border-radius: 12px;
+  min-height: 56px;
+  text-transform: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+}
+
+.btn-senior:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Melhorar navegação */
+.nav-link-senior {
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-link-senior:hover {
+  background-color: rgba(46, 125, 50, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Melhorar tipografia */
+.text-large {
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.text-medium {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.text-small {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Melhorar espaçamento */
+.spacing-large {
+  margin: 32px 0;
+  padding: 32px 0;
+}
+
+.spacing-medium {
+  margin: 24px 0;
+  padding: 24px 0;
+}
+
+.spacing-small {
+  margin: 16px 0;
+  padding: 16px 0;
+}
+
+/* Melhorar contraste de cores */
+.high-contrast {
+  color: #212121;
+  background-color: #FFFFFF;
+}
+
+.high-contrast-text {
+  color: #212121;
+}
+
+.high-contrast-bg {
+  background-color: #FFFFFF;
+}
+
+/* Melhorar responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .card-senior {
+    padding: 16px;
+    margin: 12px 0;
+  }
+  
+  .btn-senior {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+  
+  .text-large {
+    font-size: 1.125rem;
+  }
+  
+  .text-medium {
+    font-size: 1rem;
+  }
+}
+
+/* Melhorar acessibilidade para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Melhorar animações suaves */
+.smooth-transition {
+  transition: all 0.3s ease;
+}
+
+/* Melhorar feedback visual */
+.feedback-hover:hover {
+  background-color: rgba(46, 125, 50, 0.05);
+  border-color: #2E7D32;
+}
+
+.feedback-active:active {
+  transform: scale(0.98);
+}
+
+/* Melhorar contraste de links */
+a {
+  color: #2E7D32;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  color: #1B5E20;
+  text-decoration: underline;
+}
+
+/* Melhorar formulários */
+.form-field-senior {
+  margin-bottom: 24px;
+}
+
+.form-field-senior label {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #212121;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.form-field-senior input,
+.form-field-senior textarea,
+.form-field-senior select {
+  width: 100%;
+  font-size: 1.125rem;
+  padding: 16px;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+.form-field-senior input:focus,
+.form-field-senior textarea:focus,
+.form-field-senior select:focus {
+  border-color: #2E7D32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+  outline: none;
 }
