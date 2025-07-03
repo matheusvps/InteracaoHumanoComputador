@@ -14,6 +14,7 @@ import Pagamento from './pages/Pagamento';
 import Social from './pages/Social';
 import { useAuth } from './contexts/AuthContext';
 import { seniorTheme } from './styles/theme';
+import Footer from './components/Footer';
 
 function AppContent() {
   const { isAuthenticated } = useAuth();
@@ -47,6 +48,7 @@ function AppContent() {
           <Route path="*" element={<Home />} />
         </Routes>
       </Box>
+      <Footer />
     </>
   );
 }
