@@ -38,27 +38,11 @@ const Footer = () => {
           <Typography variant="body2" align="right">
             &copy; {new Date().getFullYear()} Agência Senior Viagens. Todos os direitos reservados.
           </Typography>
+          <Typography variant="caption" align="right" sx={{ opacity: 0.7, fontSize: '0.95rem', display: 'block' }}>
+            By Matheus Passos
+          </Typography>
         </Box>
       </Container>
-      <Box
-        sx={{
-          position: 'fixed',
-          right: 16,
-          bottom: 8,
-          zIndex: 1300,
-          background: 'rgba(56,142,60,0.92)',
-          color: 'white',
-          px: 2,
-          py: 0.5,
-          borderRadius: 2,
-          fontSize: '0.95rem',
-          boxShadow: '0 2px 8px 0 rgba(0,0,0,0.10)',
-          opacity: 0.85,
-          pointerEvents: 'none',
-        }}
-      >
-        By Matheus Passos
-      </Box>
     </Box>
   );
 };
